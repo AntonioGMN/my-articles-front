@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap");
 
 * {
 	color: #000000;
@@ -10,11 +10,10 @@
 body {
 	height: 100vh;
 	width: 100vw;
-	font-family: 'Alumni Sans Inline One', sans-serif;
+	font-family: "Alumni Sans Inline One", sans-serif;
 }
 
-
-.root {
+#root {
 	min-height: 100vh;
-	background: red;
+	background-image: linear-gradient(130deg, #f35fc9, #0575e6);
 }
