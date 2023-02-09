@@ -28,7 +28,7 @@ export default function SignUpPage() {
 
 		try {
 			await api.signUp(formData);
-			navigate("/");
+			navigate("/home");
 		} catch (error) {
 			const message = error.response.data.message[0];
 			setMessage({ type: "error", text: message });
