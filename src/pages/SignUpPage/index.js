@@ -1,11 +1,15 @@
 import Container from "../../components/center";
 import { Form, Button } from "../../components/form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import H1 from "../../components/h1";
 import Box from "../../components/box";
+import * as api from "../../service/apiAuth";
+import { useAlert } from "../../contexts/AlertContext";
 
 export default function SignUpPage() {
+	const navigate = useNavigate();
+	const { setMessage } = useAlert();
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -17,11 +21,26 @@ export default function SignUpPage() {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
 
+	async function hadlerSubmit(e) {
+		e.preventDefault();
+
+		delete formData.confirmPassword;
+
+		try {
+			await api.signUp(formData);
+			navigate("/");
+		} catch (error) {
+			const message = error.response.data.message[0];
+			setMessage({ type: "error", text: message });
+			return;
+		}
+	}
+
 	return (
 		<Container>
 			<Box>
 				<H1>Cadastre-se</H1>
-				<Form>
+				<Form onSubmit={(e) => hadlerSubmit(e)}>
 					<input
 						placeholder="Nome"
 						type="text"
