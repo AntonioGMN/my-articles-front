@@ -1,10 +1,12 @@
 import { useState } from "react";
-import Box from "../../components/box";
 import Container from "../../components/center";
 import { Button, Form } from "../../components/form";
+import Input from "../../components/imput";
+import Row from "../../components/row";
 import { useAlert } from "../../contexts/AlertContext";
 import { useAuth } from "../../contexts/AuthContext";
-import * as api from "../../service/apiLinks";
+import * as api from "../../service/apiArticles";
+import ShowLinks from "./showLinks";
 
 export default function HomePage() {
 	const { setMessage } = useAlert();
@@ -23,40 +25,41 @@ export default function HomePage() {
 
 		try {
 			await api.create(formData, token);
-			return setMessage({ type: "success", text: "link criado" });
+			window.location.reload();
 		} catch (error) {
-			console.log(error);
-			//const message = error.response.data.message;
-			//return setMessage({ type: "error", text: message });
-			return;
+			const message = error.response;
+			return setMessage({ type: "error", text: message });
 		}
 	}
 
 	return (
-		<Container>
-			<Form row heigth="185px" onSubmit={(e) => handlerSubmit(e)}>
-				<Box>
-					<input
+		<Container top>
+			<Form row heigth="12vh" width="60vw" onSubmit={(e) => handlerSubmit(e)}>
+				<Row>
+					<Input
+						height="45%"
 						placeholder="title"
 						required
 						name="title"
 						type="text"
 						value={formData.title}
 						onChange={(e) => handlerInput(e)}
-					></input>
-					<input
+					/>
+					<Input
+						height="45%"
 						placeholder="url"
 						required
 						name="url"
 						type="text"
 						value={formData.url}
 						onChange={(e) => handlerInput(e)}
-					></input>
-				</Box>
-				<Button type="submit" width={"100px"} heigth="100%">
+					/>
+				</Row>
+				<Button hover type="submit" width={"100px"} heigth="100%">
 					Enviar
 				</Button>
 			</Form>
+			<ShowLinks></ShowLinks>
 		</Container>
 	);
 }

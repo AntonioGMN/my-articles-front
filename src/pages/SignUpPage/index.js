@@ -6,6 +6,7 @@ import H1 from "../../components/h1";
 import Box from "../../components/box";
 import * as api from "../../service/apiAuth";
 import { useAlert } from "../../contexts/AlertContext";
+import Input from "../../components/imput";
 
 export default function SignUpPage() {
 	const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function SignUpPage() {
 
 		try {
 			await api.signUp(formData);
-			navigate("/home");
+			navigate("/");
 		} catch (error) {
 			const message = error.response.data.message[0];
 			setMessage({ type: "error", text: message });
@@ -41,7 +42,7 @@ export default function SignUpPage() {
 			<Box>
 				<H1>Cadastre-se</H1>
 				<Form onSubmit={(e) => hadlerSubmit(e)}>
-					<input
+					<Input
 						placeholder="Nome"
 						type="text"
 						name="name"
@@ -49,7 +50,7 @@ export default function SignUpPage() {
 						onChange={(e) => handlerInput(e)}
 						required
 					/>
-					<input
+					<Input
 						placeholder="Email"
 						type="email"
 						name="email"
@@ -57,7 +58,7 @@ export default function SignUpPage() {
 						onChange={(e) => handlerInput(e)}
 						required
 					/>
-					<input
+					<Input
 						placeholder="Senha"
 						type="password"
 						name="password"
@@ -65,7 +66,7 @@ export default function SignUpPage() {
 						onChange={(e) => handlerInput(e)}
 						required
 					/>
-					<input
+					<Input
 						placeholder="Confirme Senha"
 						type="password"
 						name="confirmPassword"

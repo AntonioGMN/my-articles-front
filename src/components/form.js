@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Form = styled.form`
 	height: ${(props) => (props.heigth ? props.heigth : "auto")};
-	padding: 25px;
+	width: ${(props) => (props.width ? props.width : "auto")};
+	padding: 20px;
 	border-radius: 15px;
 
 	display: flex;
@@ -15,29 +16,7 @@ export const Form = styled.form`
 	background-color: #ffffff;
 
 	@media (max-width: 700px) {
-		width: 100%;
-	}
-
-	input {
-		all: unset;
-		box-sizing: border-box;
-
-		width: 100%;
-		height: ${(pros) => (pros.inputHeight ? pros.inputHeight : "62px")};
-
-		color: #000;
-		font-size: 18px;
-
-		background: #ffffff;
-		padding: 21px;
-		border: 1px solid rgb(48 51 47 / 25%);
-		border-radius: 12px;
-		box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
-
-		::placeholder {
-			color: #9c9c9c;
-			font-family: "Lexend Deca", sans-serif;
-		}
+		width: 90%;
 	}
 
 	p,
@@ -53,6 +32,7 @@ export const Button = styled.button`
 	all: unset;
 	box-sizing: border-box;
 	border-radius: 12px;
+	cursor: pointer;
 
 	width: ${(props) => (props.width ? props.width : "100%")};
 	height: 100%;

@@ -7,6 +7,7 @@ import Box from "../../components/box";
 import { useAlert } from "../../contexts/AlertContext";
 import * as api from "../../service/apiAuth";
 import { useAuth } from "../../contexts/AuthContext";
+import Input from "../../components/imput";
 
 export default function LoginPage() {
 	const { setMessage } = useAlert();
@@ -41,14 +42,14 @@ export default function LoginPage() {
 			<Box>
 				<H1>Entre agora</H1>
 				<Form onSubmit={(e) => hadlerSubmit(e)}>
-					<input
+					<Input
 						placeholder="Email"
 						type="email"
 						name="email"
 						value={formData.email}
 						onChange={(e) => handlerInput(e)}
 					/>
-					<input
+					<Input
 						placeholder="Senha"
 						type="password"
 						name="password"
