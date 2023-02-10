@@ -9,9 +9,9 @@ export default function AuthProvider({ children }) {
 	const [token, setToken] = useState(persistedToken);
 	const { setMessage } = useAlert();
 
-	async function persistLogin(novoToken) {
-		setToken(novoToken);
-		localStorage.setItem("token", JSON.stringify(novoToken));
+	async function persistLogin(newToken) {
+		setToken(newToken);
+		localStorage.setItem("token", JSON.stringify(newToken));
 	}
 
 	async function logout(token) {

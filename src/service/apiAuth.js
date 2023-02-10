@@ -1,11 +1,5 @@
 import { instance, createConfig } from ".";
 
-export async function get(token) {
-	const config = createConfig(token);
-	const response = await instance.get("/users", config);
-	return response;
-}
-
 export async function signUp(user) {
 	return await instance.post("/users/sign-up", user);
 }

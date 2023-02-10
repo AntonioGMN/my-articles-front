@@ -24,9 +24,9 @@ instance.interceptors.response.use(
 			const originalReq = err.config;
 			if (err.response.status === 401 && err.config && !err.config._retry) {
 				originalReq._retry = true;
-				localStorage.getItem("TOKEN").then((token) => {
+				localStorage.getItem("token").then((token) => {
 					let res = instance.put(`/refresh`, { oldToken: token }).then((res) => {
-						localStorage.setItem("TOKEN", res.data.access_token);
+						localStorage.setItem("token", res.data.access_token);
 						originalReq.headers["Authorization"] = `Bearer ${res.data.access_token}`;
 						return axios(originalReq);
 					});

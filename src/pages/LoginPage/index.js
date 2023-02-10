@@ -26,7 +26,8 @@ export default function LoginPage() {
 
 		try {
 			const response = await api.login(formData);
-			persistLogin(response.data.access_token);
+			console.log(response);
+			persistLogin(response.data);
 			navigate("/home");
 		} catch (error) {
 			console.log(error);
