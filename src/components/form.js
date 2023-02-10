@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const Form = styled.form`
+	height: ${(props) => (props.heigth ? props.heigth : "auto")};
 	padding: 25px;
 	border-radius: 15px;
 
 	display: flex;
-	flex-direction: column;
+	flex-direction: ${(props) => (props.row ? "row" : "column")};
 	justify-content: flex-start;
 	align-items: center;
 	gap: 15px;
-	margin-bottom: 16px;
 	color: #31cc93;
 
 	background-color: #ffffff;
@@ -54,7 +54,8 @@ export const Button = styled.button`
 	box-sizing: border-box;
 	border-radius: 12px;
 
-	width: 100%;
+	width: ${(props) => (props.width ? props.width : "100%")};
+	height: 100%;
 
 	font-style: normal;
 	font-size: 14px;
