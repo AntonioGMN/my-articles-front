@@ -1,5 +1,6 @@
 import Container from "../../components/center";
-import { Form, Button } from "../../components/form";
+import { Form } from "../../components/form";
+import { Button } from "../../components/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import H1 from "../../components/h1";
@@ -7,7 +8,7 @@ import Box from "../../components/box";
 import { useAlert } from "../../contexts/AlertContext";
 import * as api from "../../service/apiAuth";
 import { useAuth } from "../../contexts/AuthContext";
-import Input from "../../components/imput";
+import Input from "../../components/input";
 
 export default function LoginPage() {
 	const { setMessage } = useAlert();

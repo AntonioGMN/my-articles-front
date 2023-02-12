@@ -31,6 +31,17 @@ const Article = styled.article`
 		bottom: 5px;
 		left: 5px;
 	}
+
+	div {
+		display: none;
+	}
+
+	&:hover {
+		div {
+			display: block;
+			background-color: red;
+		}
+	}
 `;
 
 export default Article;

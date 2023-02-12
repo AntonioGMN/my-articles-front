@@ -7,7 +7,7 @@ const Container = styled.main`
 	align-items: center;
 	min-height: 100vh;
 	gap: 16px;
-	padding: 16px 0 16px 0;
+	padding: 1vw 0 1vw 0;
 
 	@media (max-width: 700px) {
 		width: 100%;

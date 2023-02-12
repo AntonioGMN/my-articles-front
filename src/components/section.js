@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 const Section = styled.section`
-	min-height: fit-content;
+	min-height: 30vw;
 	width: 60vw;
 	padding: 12px;
 	background-color: aliceblue;
 	border-radius: 15px;
-	height: 82vh;
+	height: 78vh;
 	gap: 15px;
 
 	display: flex;
@@ -31,6 +31,9 @@ const Section = styled.section`
 	::-webkit-scrollbar-track {
 		background-color: #bbbbbb;
 		border-radius: 15px;
+	}
+
+	div {
 	}
 
 	@media (max-width: 700px) {

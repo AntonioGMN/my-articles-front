@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Form = styled.form`
 	height: ${(props) => (props.heigth ? props.heigth : "auto")};
 	width: ${(props) => (props.width ? props.width : "auto")};
-	padding: 20px;
+	padding: 10px;
 	border-radius: 15px;
 
 	display: flex;
@@ -19,6 +19,11 @@ export const Form = styled.form`
 		width: 90%;
 	}
 
+	label {
+		font-size: 20px;
+		color: #a6a3a1;
+	}
+
 	p,
 	a {
 		width: 100%;
@@ -26,25 +31,4 @@ export const Form = styled.form`
 		color: #c0208f;
 		font-size: 15px;
 	}
-`;
-
-export const Button = styled.button`
-	all: unset;
-	box-sizing: border-box;
-	border-radius: 12px;
-	cursor: pointer;
-
-	width: ${(props) => (props.width ? props.width : "100%")};
-	height: 100%;
-
-	font-style: normal;
-	font-size: 14px;
-	font-weight: 700;
-	line-height: 18px;
-	text-align: center;
-	color: #ffffff;
-
-	padding: 16px;
-	background: #c0208f;
-	border-radius: 12px;
 `;

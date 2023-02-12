@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
-const Box = styled.div`
+const Column = styled.div`
 	height: 100%;
-	width: ${(pros) => (pros.width ? "100%" : "380px")};
+	width: 100%;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
 
 	@media (max-width: 700px) {
 		width: 100%;
 	}
 `;
 
-export default Box;
+export default Column;

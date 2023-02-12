@@ -6,7 +6,7 @@ export const Input = styled.input`
 	width: 100%;
 	height: ${(pros) => (pros.height ? pros.height : "62px")};
 	padding-left: 5px;
-	color: #000;
+	color: #a6a3a1;
 	font-size: 18px;
 
 	background: #ffffff;
