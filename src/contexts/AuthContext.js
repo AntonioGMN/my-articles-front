@@ -14,9 +14,9 @@ export default function AuthProvider({ children }) {
 		localStorage.setItem("token", JSON.stringify(newToken));
 	}
 
-	async function logout(token) {
+	async function logout() {
 		try {
-			await api.logout(token);
+			await api.logout();
 		} catch (err) {
 			setMessage({ text: err });
 		}

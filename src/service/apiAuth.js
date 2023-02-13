@@ -9,8 +9,9 @@ export async function login(user) {
 	return response;
 }
 
-export async function logout(token) {
+export async function logout() {
+	const token = JSON.parse(localStorage.getItem("token"));
 	const config = createConfig(token);
-	const response = await instance.delete("/logout", config);
+	const response = await instance.delete("/users/logout", config);
 	return response;
 }

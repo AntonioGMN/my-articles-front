@@ -16,7 +16,7 @@ export function createConfig(token) {
 
 instance.interceptors.response.use(
 	(response) => {
-		console.log("entrou no certo");
+		console.log("tudo ok");
 		return response;
 	},
 	(err) => {
@@ -24,14 +24,21 @@ instance.interceptors.response.use(
 			const originalReq = err.config;
 			if (err.response.status === 401 && err.config && !err.config._retry) {
 				originalReq._retry = true;
-				localStorage.getItem("token").then((token) => {
-					let res = instance.put(`/refresh`, { oldToken: token }).then((res) => {
-						localStorage.setItem("token", res.data.access_token);
-						originalReq.headers["Authorization"] = `Bearer ${res.data.access_token}`;
+				const token = JSON.parse(localStorage.getItem("token"));
+				console.log("token", token);
+				let res = instance
+					.put(`/token/refresh`, { oldToken: token })
+					.then((res) => {
+						console.log(res);
+						const newToken = JSON.stringify(res.data);
+						localStorage.setItem("token", newToken);
+						originalReq.headers["Authorization"] = `Bearer ${newToken}`;
 						return axios(originalReq);
+					})
+					.catch((err) => {
+						console.log("error no refresh", err);
 					});
-					resolve(res);
-				});
+				resolve(res);
 			} else {
 				reject(err);
 			}

@@ -20,6 +20,7 @@ export default function FormCrawlerArticles() {
 			await api.crawler(url, token);
 			window.location.reload();
 		} catch (error) {
+			console.log("erro no crawler");
 			const message = error.response;
 			return setMessage({ type: "error", text: message });
 		}

@@ -8,6 +8,8 @@ const H1 = styled.h1`
 	text-align: start;
 	color: white;
 
+	margin-bottom: 12px;
+
 	align-self: flex-start;
 
 	@media (max-width: 700px) {
