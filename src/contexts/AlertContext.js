@@ -4,7 +4,7 @@ import Alert from "../components/alert";
 const AlertContext = createContext();
 
 export default function AlertProvide({ children }) {
-	const [message, setMessage] = useState([]);
+	const [message, setMessage] = useState(null);
 
 	function handleClose() {
 		setMessage(null);

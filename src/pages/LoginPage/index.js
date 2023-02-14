@@ -28,12 +28,14 @@ export default function LoginPage() {
 
 		try {
 			const response = await api.login(formData);
-			console.log(response);
 			persistLogin(response.data);
 			navigate("/home");
 		} catch (error) {
+			console.log("entrou em erro login");
+
 			console.log(error);
 			const message = error.response.data.message;
+			console.log("message", message);
 			return setMessage({ type: "error", text: message });
 		}
 	}
