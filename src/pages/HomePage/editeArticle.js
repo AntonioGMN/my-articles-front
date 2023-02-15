@@ -11,11 +11,14 @@ import { useState } from "react";
 import Input from "../../components/input";
 import * as api from "../../service/apiArticles";
 import { useAuth } from "../../contexts/AuthContext";
+import { useAlert } from "../../contexts/AlertContext";
 
-export default function EditePenIcon({ originalArticle }) {
+export default function EditeArticles({ originalArticle }) {
 	const [open, setOpen] = useState(false);
 	const [article, setArticle] = useState(originalArticle);
 	const { token } = useAuth();
+	const { setMessage } = useAlert();
+
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -37,7 +40,10 @@ export default function EditePenIcon({ originalArticle }) {
 			await api.update(article, token);
 			window.location.reload();
 		} catch (erro) {
-			console.log(erro);
+			return setMessage({
+				type: "error",
+				text: "Erro ao salvar artigos do site indicado",
+			});
 		}
 	};
 

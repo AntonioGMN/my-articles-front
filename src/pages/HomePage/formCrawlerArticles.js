@@ -7,22 +7,26 @@ import { useAlert } from "../../contexts/AlertContext";
 import { useAuth } from "../../contexts/AuthContext";
 import * as api from "../../service/apiArticles";
 import Row from "../../components/row";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function FormCrawlerArticles() {
 	const { setMessage } = useAlert();
 	const { token } = useAuth();
 	const [url, setUrl] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	async function handlerSubmit(e) {
 		e.preventDefault();
 
 		try {
+			setLoading(true);
 			await api.crawler(url, token);
 			window.location.reload();
 		} catch (error) {
-			console.log("erro no crawler");
-			const message = error.response;
-			return setMessage({ type: "error", text: message });
+			return setMessage({
+				type: "error",
+				text: "Erro ao salvar artigos do site indicado",
+			});
 		}
 	}
 
@@ -34,13 +38,13 @@ export default function FormCrawlerArticles() {
 					<Input
 						placeholder="URL"
 						height="100%"
-						type={url}
+						type="url"
 						required
 						value={url}
 						onChange={(e) => setUrl(e.target.value)}
 					/>
 					<Button hover type="submit" width={"100px"} heigth="100%">
-						Buscar
+						{loading ? <CircularProgress /> : "Buscar"}
 					</Button>
 				</Row>
 			</Collun>

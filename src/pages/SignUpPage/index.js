@@ -8,16 +8,24 @@ import Box from "../../components/box";
 import * as api from "../../service/apiAuth";
 import { useAlert } from "../../contexts/AlertContext";
 import Input from "../../components/input";
+import { useEffect } from "react";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function SignUpPage() {
 	const navigate = useNavigate();
 	const { setMessage } = useAlert();
+	const { token } = useAuth();
+
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
 		password: "",
 		confirmPassword: "",
 	});
+
+	useEffect(() => {
+		if (token) navigate("/");
+	}, [token, navigate]);
 
 	function handlerInput(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,11 +38,10 @@ export default function SignUpPage() {
 
 		try {
 			await api.signUp(formData);
-			navigate("/");
+			navigate("/login");
 		} catch (error) {
 			const message = error.response.data.message[0];
-			setMessage({ type: "error", text: message });
-			return;
+			return setMessage({ type: "error", text: message });
 		}
 	}
 
@@ -77,7 +84,7 @@ export default function SignUpPage() {
 					/>
 					<Button>Cadastre-se</Button>
 					<p>
-						Já possui cadastro? <Link to={"/"}>Ir pra página de login</Link>
+						Já possui cadastro? <Link to={"/login"}>Ir pra página de login</Link>
 					</p>
 				</Form>
 			</Box>

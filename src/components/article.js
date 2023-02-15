@@ -25,7 +25,7 @@ const Article = styled.article`
 	}
 
 	p {
-		color: whitesmoke;
+		color: #c01f8f;
 		font-size: large;
 		position: absolute;
 		bottom: 5px;
@@ -37,10 +37,15 @@ const Article = styled.article`
 	}
 
 	&:hover {
+		width: 100%;
 		div {
 			display: block;
 			background-color: red;
 		}
+	}
+
+	@media (max-width: 700px) {
+		width: 100%;
 	}
 `;
 

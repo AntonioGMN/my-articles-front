@@ -27,15 +27,14 @@ export default function FromCreateArticle() {
 			await api.create(formData, token);
 			window.location.reload();
 		} catch (error) {
-			const message = error.response;
-			return setMessage({ type: "error", text: message });
+			return setMessage({ type: "error", text: "Erri ao salvar artigo" });
 		}
 	}
 
 	return (
 		<Form row heigth="10vh" width="60vw" onSubmit={(e) => handlerSubmit(e)}>
 			<Column>
-				<label>Save seu artigo</label>
+				<label>Salve seu artigo</label>
 				<Row>
 					<Column>
 						<Input

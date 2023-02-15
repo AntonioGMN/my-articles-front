@@ -22,7 +22,7 @@ export default function AuthProvider({ children }) {
 		}
 
 		localStorage.clear();
-		window.location.replace("/");
+		window.location.replace("/login");
 	}
 
 	return (

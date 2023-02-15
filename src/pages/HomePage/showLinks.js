@@ -3,7 +3,7 @@ import Article from "../../components/article";
 import Section from "../../components/section";
 import { useAuth } from "../../contexts/AuthContext";
 import * as api from "../../service/apiArticles";
-import EditePenIcon from "./editeArticle";
+import EditeArticles from "./editeArticle";
 
 export default function ShowLinks() {
 	const [articles, setArticles] = useState([]);
@@ -14,7 +14,6 @@ export default function ShowLinks() {
 		async function getArticles() {
 			try {
 				const response = await api.get(token);
-				console.log(response.data);
 				setArticles(response.data);
 				setLoading(false);
 			} catch (err) {
@@ -40,7 +39,7 @@ export default function ShowLinks() {
 								<img src={art.image} alt="error" />
 								<p>{art.title}</p>
 							</a>
-							<EditePenIcon originalArticle={art} />
+							<EditeArticles originalArticle={art} />
 						</Article>
 				  ))}
 		</Section>

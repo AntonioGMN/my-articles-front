@@ -6,6 +6,10 @@ export const Button = styled.button`
 	border-radius: 12px;
 	cursor: pointer;
 
+	:disabled {
+		color: red;
+	}
+
 	width: ${(props) => (props.width ? props.width : "100%")};
 	height: 100%;
 

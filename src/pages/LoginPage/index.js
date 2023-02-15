@@ -2,7 +2,7 @@ import Container from "../../components/center";
 import { Form } from "../../components/form";
 import { Button } from "../../components/button";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import H1 from "../../components/h1";
 import Box from "../../components/box";
 import { useAlert } from "../../contexts/AlertContext";
@@ -12,12 +12,16 @@ import Input from "../../components/input";
 
 export default function LoginPage() {
 	const { setMessage } = useAlert();
-	const { persistLogin } = useAuth();
+	const { persistLogin, token } = useAuth();
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
 	});
+
+	useEffect(() => {
+		if (token) navigate("/");
+	}, [token, navigate]);
 
 	function handlerInput(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,11 +33,8 @@ export default function LoginPage() {
 		try {
 			const response = await api.login(formData);
 			persistLogin(response.data);
-			navigate("/home");
+			navigate("/");
 		} catch (error) {
-			console.log("entrou em erro login");
-
-			console.log(error);
 			const message = error.response.data.message;
 			console.log("message", message);
 			return setMessage({ type: "error", text: message });
@@ -61,7 +62,7 @@ export default function LoginPage() {
 					/>
 					<Button type="submit">Entrar</Button>
 					<p>
-						Ainda não possui cadastro? <Link to={"signUp"}>Cadastre-se agora</Link>
+						Ainda não possui cadastro? <Link to={"/signUp"}>Cadastre-se agora</Link>
 					</p>
 				</Form>
 			</Box>
