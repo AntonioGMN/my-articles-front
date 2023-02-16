@@ -16,7 +16,6 @@ export function createConfig(token) {
 
 instance.interceptors.response.use(
 	(response) => {
-		console.log("tudo ok");
 		return response;
 	},
 	(err) => {
@@ -26,13 +25,10 @@ instance.interceptors.response.use(
 				try {
 					originalReq._retry = true;
 					const token = JSON.parse(localStorage.getItem("token"));
-					console.log("token", token);
-
 					const res = await instance.put(`/token/refresh`, { oldToken: token });
+					localStorage.setItem("token", JSON.stringify(res.data));
+					originalReq.headers["Authorization"] = `Bearer ${res.data}`;
 
-					const newToken = JSON.stringify(res.data);
-					localStorage.setItem("token", newToken);
-					originalReq.headers["Authorization"] = `Bearer ${newToken}`;
 					const newResponse = await axios(originalReq);
 					resolve(newResponse);
 				} catch (erro) {

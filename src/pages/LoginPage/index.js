@@ -36,7 +36,6 @@ export default function LoginPage() {
 			navigate("/");
 		} catch (error) {
 			const message = error.response.data.message;
-			console.log("message", message);
 			return setMessage({ type: "error", text: message });
 		}
 	}

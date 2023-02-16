@@ -4,11 +4,13 @@ import Section from "../../components/section";
 import { useAuth } from "../../contexts/AuthContext";
 import * as api from "../../service/apiArticles";
 import EditeArticles from "./editeArticle";
+import { useAlert } from "../../contexts/AlertContext";
 
 export default function ShowLinks() {
 	const [articles, setArticles] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const { token } = useAuth();
+	const { setMessage } = useAlert();
 
 	useEffect(() => {
 		async function getArticles() {
@@ -17,13 +19,11 @@ export default function ShowLinks() {
 				setArticles(response.data);
 				setLoading(false);
 			} catch (err) {
-				console.error(err);
+				return setMessage({ type: "error", text: "Erro ao buscar seus artigos" });
 			}
 		}
 		getArticles();
-	}, [articles.length, token]);
-
-	console.log(articles);
+	}, [articles.length, token, setMessage]);
 
 	if (loading) {
 		return <Section>Carregando</Section>;

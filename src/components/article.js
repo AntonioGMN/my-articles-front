@@ -37,7 +37,6 @@ const Article = styled.article`
 	}
 
 	&:hover {
-		width: 100%;
 		div {
 			display: block;
 			background-color: red;

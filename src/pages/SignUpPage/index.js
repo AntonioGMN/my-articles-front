@@ -34,10 +34,18 @@ export default function SignUpPage() {
 	async function hadlerSubmit(e) {
 		e.preventDefault();
 
-		delete formData.confirmPassword;
+		if (formData.password !== formData.confirmPassword) {
+			return setMessage({ type: "error", text: "Senha não são iguais" });
+		}
+
+		const signUpData = {
+			name: formData.name,
+			email: formData.email,
+			password: formData.password,
+		};
 
 		try {
-			await api.signUp(formData);
+			await api.signUp(signUpData);
 			navigate("/login");
 		} catch (error) {
 			const message = error.response.data.message[0];
