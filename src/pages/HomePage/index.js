@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "../../components/center";
 import { Button } from "../../components/button";
 
@@ -7,10 +7,17 @@ import Header from "../../components/header";
 import FromCreateArticle from "./formCreateArticles";
 import FormCrawlerArticles from "./formCrawlerArticles";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
 	const [formChange, setFormChange] = useState(true);
-	const { logout } = useAuth();
+	const navigate = useNavigate();
+
+	const { logout, token } = useAuth();
+
+	useEffect(() => {
+		if (!token) navigate("login");
+	}, [token, navigate]);
 
 	return (
 		<Container top>
