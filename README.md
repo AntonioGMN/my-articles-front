@@ -34,7 +34,7 @@ git clone https://github.com/AntonioGMN/teste-in8-front.git
 git clone https://github.com/AntonioGMN/teste-IN8-back
 ```
 
-### 3- Create a .env file folling the .env.exemple
+### 3- Create a .env file with:
 
 ```
 REACT_APP_BASE_URL =  http://localhost:5000
