@@ -31,7 +31,7 @@ git clone https://github.com/AntonioGMN/teste-IN8-back.git
 ### 2- Clone the back-end repository at
 
 ```
-https://github.com/AntonioGMN/teste-IN8-back
+git clone https://github.com/AntonioGMN/teste-IN8-back
 ```
 
 ### 3- Create a .env file folling the .env.exemple
